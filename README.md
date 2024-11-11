@@ -3,7 +3,7 @@ How would one use recently developed transformer language models small enough to
 
 ### Files
 ```
-text[1-5]: development/tuning files
-text6:     model graphing utility
+text[1-5]: development/tuning
+text6:     model case graphing utility
 text7:     correction engine
 ```
