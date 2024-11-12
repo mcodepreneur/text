@@ -8,5 +8,5 @@ text6:     model case graphing utility
 text7:     correction engine
 ```
 ## Future Development
-*Methodical tuning to reduce false positives.\
+*Methodical fine-tuning to reduce false positives.\
 *Incorporating supplemental traditional autocorrection libraries.
