@@ -7,7 +7,7 @@ text[1-5]: development/tuning
 text6:     model case graphing utility
 text7:     correction engine
 ```
-## Future Development
+### Future Development
 * Methodical fine-tuning to reduce false positives
 * Incorporating supplemental traditional autocorrection libraries
 * Implementation changes for executable efficiency
