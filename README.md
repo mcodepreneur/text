@@ -3,9 +3,9 @@ How would one use recently developed transformer language models small enough to
 
 ### Files (Experimental)
 ```
-text[1-5]: development/tuning
-text6:     model case graphing utility
-text7:     correction engine
+text[1-5].ipynb : development/tuning
+text6.ipynb     : model case graphing utility
+text7.ipynb     : correction engine
 ```
 ### Future Development
 * Methodical fine-tuning to reduce false positives
