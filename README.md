@@ -10,4 +10,4 @@ text7.ipynb     : correction engine
 ### Future Development
 * Methodical, empirical fine-tuning
 * Incorporating supplemental traditional autocorrection libraries
-* Implementation changes for execution efficiency
+* Implementation changes for code performance
