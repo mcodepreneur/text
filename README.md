@@ -11,3 +11,4 @@ text7.ipynb     : correction engine
 * Methodical, empirical fine-tuning
 * Incorporating supplemental traditional autocorrection libraries
 * Implementation changes for code performance
+* Allows for recalculation and correcting other words based on updated context but current implementation only gives one at a time
