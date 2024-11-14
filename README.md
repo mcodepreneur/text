@@ -6,7 +6,7 @@ How would one use recently developed transformer language models small enough to
 text[1-5].ipynb : development/tuning
 text6.ipynb     : model case graphing utility
 text7.ipynb     : correction engine
-text2.py        : [test] example real-time correction utility
+text8.py        : [test] example real-time correction utility
 ```
 ### Future Development
 * Dataset creation and empirical fine-tuning
