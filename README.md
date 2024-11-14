@@ -9,6 +9,6 @@ text7.ipynb     : correction engine
 text8.py        : example real-time correction utility [test]
 ```
 ### Future Development
-* Dataset creation and empirical fine-tuning
+* Dataset creation and empirical fine-tuning (posible automated parameter learning)
 * Implementation changes for code performance
 * Allows for recalculation and correcting other words based on corrected context but current implementation only gives one correction at a time
