@@ -1,4 +1,6 @@
-## 
+## experimental real-time correction tkinter module
+## implementing threading to allow the user to keep 
+## typing while the model proceeses context
 import tkinter as tk
 import numpy as np
 import pandas as pd
