@@ -1,18 +1,17 @@
 ## experimental real-time correction tkinter module
 ## implementing threading to allow the user to keep 
 ## typing while the model proceeses context
+from torch.nn.functional import softmax
+from transformers import pipeline, GPT2TokenizerFast, GPT2LMHeadModel, AutoTokenizer, BertForMaskedLM
+from autocorrect import Speller
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+from difflib import SequenceMatcher
+from string import punctuation
+from time import time
 import tkinter as tk
 import numpy as np
 import pandas as pd
 import torch
-import threading
-from transformers import GPT2TokenizerFast, GPT2LMHeadModel, AutoTokenizer, BertForMaskedLM
-from torch.nn.functional import softmax
-from difflib import SequenceMatcher
-from autocorrect import Speller
-from string import punctuation
-import time
-import collections.abc
 import nltk
 nltk.download('words')
 
@@ -67,13 +66,19 @@ def similar(a, b):
 def rreplace(string, word, new_word):
     start = string.rfind(word)
     return string[0:start] + new_word + string[start+len(word):]
+
+lemmatizer  = WordNetLemmatizer()
+lemma       = lambda x: lemmatizer.lemmatize(x)
+stemmer     = PorterStemmer()
+stem        = lambda x: stemmer.stem(x)
+spell       = Speller()
 wl          = set(nltk.corpus.words.words())
 log_map     = lambda e: np.vectorize(lambda x: np.power(np.log(x/0.5)/np.log(2), e))  # specify exponent to return vectorized mapping
 after_slash = lambda x: x[(x.rfind("/")+1 if x.rfind("/") != -1 else 0):]
-spell = Speller()
 
 def correction(string, back_n):
     places = reversed(range(1,back_n+1))
+    if back_n == 0: places = [1, 3, 2]
     string = string.strip()
     words  = string.split()
     last_space = string.rfind(' ')
@@ -112,7 +117,7 @@ def correction(string, back_n):
             irr_t = props[0][1] * relevency_t
             for word, score in props: 
                 if score < irr_t: break
-                elif target.lower() == word.lower():
+                elif target.lower() == word.lower() or stem(target.lower())  == word.lower() or lemma(target.lower()) == word.lower():
                     make_correction = False
         if make_correction: return (n, props[0][0])
         if spelled: return (n, target)
@@ -160,20 +165,21 @@ def apply_correction(event=None):
     threading.Thread(target=update_box).start()
 
 verbose = False  # print parsed text fields on correction
-back_n  = 3  # number of words back from end of string, 1 is just last word
+back_n  = 0  # number of words back from end of string, 1 is just last word
 k       = 1.2  # exponent parameter for exponential decay of word length augmedented SequenceMatcher
 ap      = 0.57  # exponent parameter
 bp      = 1  # exponent parameter
 log_exp      = 5  # exponent parameter for logarithmic mapping
-prob_exp     = 1.6  # raise probability to power in ((prob**power)*log-sim)
+prob_exp     = 1.5  # raise probability to power in ((prob**power)*log-sim)
 consider_top = 100  # max top model word predictions considered
 relevency_t  = 0.05  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
-base_t       = 0.0002  # decision threshold for last word: base threshold
+base_t       = 0.0001  # decision threshold for last word: base threshold
+threshold_e  = 1.5  # exponent for exponential thresholds
 threshold_t  = "exponential"  # function defines decision threshold for word n from end
 threshold    = {"constant":    lambda n: base_t,
                 "linear":      lambda n: base_t + (base_t * (n-1)),
-                "exponential": lambda n: base_t * (n**2),
-                "jump-exp":    lambda n: base_t * (max(n-1,1)**2),        # jump thresholds start growing after n=2
+                "exponential": lambda n: base_t * (n**threshold_e),
+                "jump-exp":    lambda n: base_t * (max(n-1,1)**threshold_e),        # jump thresholds start growing after n=2
                 "jump-lin":    lambda n: base_t + (base_t * max(n-2, 0))
                }[threshold_t]
 
