@@ -34,7 +34,7 @@ class GPT2:
         topk_probs = all_probs[topk_i].tolist()                     # Filter the token probabilities for the top k candidates.
         topk_tokens = [self.tokenizer.decode([idx]).strip()         # Decode the top k candidates back to words.
                        for idx in topk_i]
-        return list(zip(topk_tokens, topk_probs))
+        return np.array(list(zip(topk_tokens, topk_probs)))
 
 class BERT:
     def __init__(self, model="google-bert/bert-base-uncased"):
@@ -104,7 +104,8 @@ def correction(string, back_n):
             if target != spell(target):
                 target = spell(target)
                 spelled = True
-        probs  = model.get_word_probs(prompt)                
+        probs = get_word_probs(prompt)
+        probs[:,1] = probs[:,1].astype(float)/probs[:,1].astype(float).sum()
         probsp = [(str(word), float(prob), float(similar(target, word))) for word, prob in probs if word in wl]
         close_probs = [prob for prob in probsp if prob[2] > 0.5 and prob[1] >= min(0.001, probsp[consider_top][1])]
         props = [(word, (prob**prob_exp)*log_map(log_exp)(sim)) for word, prob, sim in close_probs]
@@ -167,14 +168,14 @@ def apply_correction(event=None):
 verbose = False  # print parsed text fields on correction
 back_n  = 0  # number of words back from end of string, 1 is just last word
 k       = 1.2  # exponent parameter for exponential decay of word length augmedented SequenceMatcher
-ap      = 0.57  # exponent parameter
+ap      = 0.55  # exponent parameter
 bp      = 1  # exponent parameter
 log_exp      = 5  # exponent parameter for logarithmic mapping
-prob_exp     = 1.5  # raise probability to power in ((prob**power)*log-sim)
+prob_exp     = 1  # raise probability to power in ((prob**power)*log-sim)
 consider_top = 100  # max top model word predictions considered
 relevency_t  = 0.05  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
-base_t       = 0.0001  # decision threshold for last word: base threshold
-threshold_e  = 1.5  # exponent for exponential thresholds
+base_t       = 0.005  # decision threshold for last word: base threshold
+threshold_e  = 2.1  # exponent for exponential thresholds
 threshold_t  = "exponential"  # function defines decision threshold for word n from end
 threshold    = {"constant":    lambda n: base_t,
                 "linear":      lambda n: base_t + (base_t * (n-1)),
