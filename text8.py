@@ -11,6 +11,7 @@ from time import time
 import tkinter as tk
 import numpy as np
 import pandas as pd
+import threading
 import torch
 import nltk
 nltk.download('words')
@@ -104,7 +105,7 @@ def correction(string, back_n):
             if target != spell(target):
                 target = spell(target)
                 spelled = True
-        probs = get_word_probs(prompt)
+        probs = model.get_word_probs(prompt)
         probs[:,1] = probs[:,1].astype(float)/probs[:,1].astype(float).sum()
         probsp = [(str(word), float(prob), float(similar(target, word))) for word, prob in probs if word in wl]
         close_probs = [prob for prob in probsp if prob[2] > 0.5 and prob[1] >= min(0.001, probsp[consider_top][1])]
@@ -121,7 +122,7 @@ def correction(string, back_n):
                 elif target.lower() == word.lower() or stem(target.lower())  == word.lower() or lemma(target.lower()) == word.lower():
                     make_correction = False
         if make_correction: return (n, props[0][0])
-        if spelled: return (n, target)
+        #if spelled: return (n, target)
     return False
     
 def process_correction(string, back_n):
@@ -173,9 +174,9 @@ bp      = 1  # exponent parameter
 log_exp      = 5  # exponent parameter for logarithmic mapping
 prob_exp     = 1  # raise probability to power in ((prob**power)*log-sim)
 consider_top = 100  # max top model word predictions considered
-relevency_t  = 0.05  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
-base_t       = 0.005  # decision threshold for last word: base threshold
-threshold_e  = 2.1  # exponent for exponential thresholds
+relevency_t  = 0.07  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
+base_t       = 0.0015  # decision threshold for last word: base threshold
+threshold_e  = 1.8  # exponent for exponential thresholds
 threshold_t  = "exponential"  # function defines decision threshold for word n from end
 threshold    = {"constant":    lambda n: base_t,
                 "linear":      lambda n: base_t + (base_t * (n-1)),
