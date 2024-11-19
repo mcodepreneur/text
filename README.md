@@ -11,6 +11,5 @@ strings.txt     : test dataset, n=295
 text8.py        : example real-time correction utility
 ```
 ### Future Development
-* Dataset creation, empirical fine-tuning (possible automated parameter learning)
-* Integrating traditional spell checking 
 * Allow for recalculation and correcting other words based on corrected context
+* Automated parameter learning
