@@ -8,7 +8,7 @@ text[1-5].ipynb : development/tuning
 text6.ipynb     : model case graphing utility
 text7.ipynb     : correction engine, test metrics
 strings.txt     : test dataset, n=222
-text8.py        : example real-time correction utility [test]
+text8.py        : example real-time correction utility
 ```
 ### Future Development
 * Dataset creation and empirical fine-tuning (possible automated parameter learning)
