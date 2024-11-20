@@ -12,12 +12,15 @@ text8.py        : example real-time correction utility
 ```
 ### Development
 #### Optana Hyperparameter Learning
-* Hyperparameter importances to recall\n\
+* Hyperparameter importances to recall\
 ![recall hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/recall.png)\
 *(figure 1)*
-* Adjustment table refinement for accuracy\n\
+* Adjustment table refinement for accuracy\
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 2)*
+Automated fine tuning produced two optimal adjustment talbes:
+{1: 0.513, 2: 0.351, 3: 0.168, 4: 0.048}
+{1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}
 
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
