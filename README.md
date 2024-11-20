@@ -20,7 +20,7 @@ Hyperparameter importances\
 \
 Hyperparameter value search\
 ![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
-*(figure 2)*\
+*(figure 2)*
  
 * Adjustment table refinement (objective=accuracy)
 
@@ -39,6 +39,7 @@ Automated fine tuning produced two optimal adjustment talbes:
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 #### Logarithmic Similarity Transformation
 ![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
-*(figure 5)*\
+*(figure 5)*
+
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
