@@ -15,20 +15,20 @@ text8.py        : example real-time correction utility
 * Hyperparameter tuning (objective=accuracy)
 
 Hyperparameter importances\
-![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)
+![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)\
 *(figure 1)*\
 \
 Hyperparameter value search\
-![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)
+![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
 *(figure 2)*\
  
 * Adjustment table refinement (objective=accuracy)
 
-Adjustment table importances
+Adjustment table importances\
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 3)*\
 \
-Adjustment table search
+Adjustment table search\
 ![adjustment value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 4)*\
 \
@@ -38,7 +38,7 @@ Automated fine tuning produced two optimal adjustment talbes:
    
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 #### Logarithmic Similarity Transformation
-![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)
+![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
 *(figure 5)*\
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
