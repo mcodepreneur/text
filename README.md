@@ -16,6 +16,9 @@ text8.py        : example real-time correction utility
 
 Hyperparameter importances *(figure 1)*\
 ![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)
+\
+Hyperparameter value search *(figure 2)*\
+![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)
 
 * Adjustment table refinement (objective=accuracy)
   
