@@ -10,5 +10,10 @@ text7.ipynb     : correction engine, test metrics, automated parameter learning
 strings.txt     : test dataset, n=330
 text8.py        : example real-time correction utility
 ```
+### Development
+#### Optana hyperparameter learning
+Hyperparameter importances to recall:\
+![recall hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/recall.png)
+
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
