@@ -31,7 +31,7 @@ Adjustment table search\
 \
 Automated fine tuning produced two optimal adjustment talbes:
 1. {1: 0.51, 2: 0.35, 3: 0.17, 4: 0.05}
-2. {1: 0.41, 2: 0.33, 3: 0.2, 4: 0.07}
+2. {1: 0.41, 2: 0.33, 3: 0.20, 4: 0.07}
    
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 ### Logarithmic Similarity Transformation
