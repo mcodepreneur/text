@@ -21,7 +21,6 @@ text8.py        : example real-time correction utility
 *(figure 2)*\
 ![adjustment value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 3)*\
-
 Automated fine tuning produced two optimal adjustment talbes:
 1. {1: 0.513, 2: 0.351, 3: 0.168, 4: 0.048}
 2. {1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}
