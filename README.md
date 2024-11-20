@@ -15,6 +15,7 @@ text8.py        : example real-time correction utility
 * Hyperparameter importances to recall
   
 ![recall hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/recall.png)
+*figure 1*
 
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
