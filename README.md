@@ -16,6 +16,7 @@ text8.py        : example real-time correction utility
 ![recall hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/recall.png)\
 *(figure 1)*
 * Adjustment table refinement for accuracy\
+  
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 2)*\
 Automated fine tuning produced two optimal adjustment talbes:\
