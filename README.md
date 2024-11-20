@@ -21,6 +21,7 @@ Hyperparameter importances *(figure 1)*\
   
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 2)*\
+\
 ![adjustment value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 3)*\
 Automated fine tuning produced two optimal adjustment talbes:
