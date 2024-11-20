@@ -20,9 +20,9 @@ text8.py        : example real-time correction utility
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 2)*\
 Automated fine tuning produced two optimal adjustment talbes:\
-{1: 0.513, 2: 0.351, 3: 0.168, 4: 0.048}\
-{1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}\
-(original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1})
+1. {1: 0.513, 2: 0.351, 3: 0.168, 4: 0.048}\
+2. {1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}\
+Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
