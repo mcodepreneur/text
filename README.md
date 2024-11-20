@@ -24,6 +24,7 @@ Automated fine tuning produced two optimal adjustment talbes:
 2. {1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}
    
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
-
+#### Logarithmic Similarity Transformation *(figure 3)*
+![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
