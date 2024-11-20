@@ -12,7 +12,7 @@ text8.py        : example real-time correction utility
 ```
 ### Development
 #### Optana Hyperparameter Learning
-* Hyperparameter importances to recall *(figure 1)*
+* Hyperparameter tuning (objective=accuracy) *(figure 1)*
   
 ![recall hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/recall.png)
 * Adjustment table refinement (objective=accuracy)
