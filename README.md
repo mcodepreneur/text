@@ -10,9 +10,9 @@ text7.ipynb     : correction engine, test metrics, automated parameter learning
 strings.txt     : test dataset, n=330
 text8.py        : example real-time correction utility
 ```
-### Development
-#### Optana Hyperparameter Learning
-* Hyperparameter tuning (objective=accuracy)
+## Development
+### Optana Hyperparameter Learning
+#### Hyperparameter tuning (objective=accuracy)
 
 Hyperparameter importances\
 ![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)\
@@ -22,7 +22,7 @@ Hyperparameter value search\
 ![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
 *(figure 2)*
  
-* Adjustment table refinement (objective=accuracy)
+#### Adjustment table refinement (objective=accuracy)
 
 Adjustment table importances\
 ![adjustment table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
@@ -37,7 +37,7 @@ Automated fine tuning produced two optimal adjustment talbes:
 2. {1: 0.413, 2: 0.327, 3: 0.196, 4: 0.071}
    
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
-#### Logarithmic Similarity Transformation
+### Logarithmic Similarity Transformation
 ![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
 *(figure 5)*
 
