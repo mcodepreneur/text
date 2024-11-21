@@ -11,7 +11,7 @@ strings.txt     : test dataset, n=330
 text8.py        : example real-time correction utility
 ```
 ## Development
-### Optana Hyperparameter Learning
+### Optana Hyperparameter Fine-Tuning
 #### Hyperparameter tuning (objective=accuracy):
 Hyperparameter importances\
 ![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)\
