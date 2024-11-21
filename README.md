@@ -40,4 +40,4 @@ Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
-* Fine tuning GPT2 and BERT for my task dataset once it is large enough
+* Fine tuning GPT2 and BERT once my task dataset is large enough
