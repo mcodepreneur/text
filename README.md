@@ -33,10 +33,8 @@ Augmentation table search **(Parallel Coordinate Plot)**\
 ![augmentation value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 5)*\
 \
-Automated fine tuning produced two optimal augmentation talbes (as seen in figure 4):
-1. {1: 0.51, 2: 0.35, 3: 0.17, 4: 0.05}
-2. {1: 0.41, 2: 0.33, 3: 0.20, 4: 0.07}
-   
+Automated fine tuning produced an optimal augmentation table (as seen in figure 5):
+* {'adj1': 0.5, 'adj2': 0.29, 'adj3': 0.14, 'adj4': 0.05}\   
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 ### Logarithmic Similarity Transformation
 Linear and logarithmic mappings with sim_bound=0.5\
