@@ -12,7 +12,7 @@ text8.py        : example real-time correction utility
 ```
 ## Development
 ### Optana Hyperparameter Fine-Tuning
-#### Hyperparameter tuning (objective=accuracy):
+#### Hyperparameter tuning (objective=accuracy)
 Optimization history (accuracy)\
 ![optimization accuracy history](https://github.com/mcodepreneur/text/blob/main/figures/optimization_history.png)\
 *(figure 1)*\
@@ -24,7 +24,7 @@ Hyperparameter importances\
 Hyperparameter value search **(Parallel Coordinate Plot)**\
 ![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
 *(figure 3)*
-#### Augmentation table refinement (objective=accuracy):
+#### Augmentation table refinement (objective=accuracy)
 Augmentation table importances\
 ![augmentation table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 4)*\
@@ -39,6 +39,7 @@ Automated fine tuning produced two optimal augmentation talbes (as seen in figur
    
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 ### Logarithmic Similarity Transformation
+#### Linear and logarithmic mappings with sim_bound=0.5
 ![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
 *(figure 6)*
 
