@@ -21,7 +21,7 @@ Hyperparameter importances\
 ![accuracy hyperparameter importances](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_importance.png)\
 *(figure 2)*\
 \
-Hyperparameter value search\
+Hyperparameter value search **(Parallel Coordinate Plot)**\
 ![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
 *(figure 3)*
 #### Augmentation table refinement (objective=accuracy):
