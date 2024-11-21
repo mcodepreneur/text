@@ -29,7 +29,7 @@ Augmentation table importances\
 ![augmentation table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
 *(figure 4)*\
 \
-Augmentation table search\
+Augmentation table search **(Parallel Coordinate Plot)**\
 ![augmentation value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 5)*\
 \
