@@ -34,7 +34,8 @@ Augmentation table search **(Parallel Coordinate Plot)**\
 *(figure 5)*\
 \
 Automated fine tuning produced an optimal augmentation table (as seen in figure 5):
-* {'adj1': 0.5, 'adj2': 0.29, 'adj3': 0.14, 'adj4': 0.05}\   
+* {'adj1': 0.5, 'adj2': 0.29, 'adj3': 0.14, 'adj4': 0.05}
+  
 Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 ### Logarithmic Similarity Transformation
 Linear and logarithmic mappings with sim_bound=0.5\
