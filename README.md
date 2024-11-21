@@ -13,7 +13,7 @@ text8.py        : example real-time correction utility
 ## Development
 ### Optana Hyperparameter Fine-Tuning
 #### Hyperparameter tuning (objective=accuracy)
-Optimization history (accuracy)\
+Optimization history\
 ![optimization accuracy history](https://github.com/mcodepreneur/text/blob/main/figures/optimization_history.png)\
 *(figure 1)*\
 \
