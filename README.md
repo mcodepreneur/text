@@ -29,7 +29,7 @@ Augmentation table search\
 ![augmentation value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
 *(figure 4)*\
 \
-Automated fine tuning produced two optimal augmentation talbes:
+Automated fine tuning produced two optimal augmentation talbes (as seen in figure 4):
 1. {1: 0.51, 2: 0.35, 3: 0.17, 4: 0.05}
 2. {1: 0.41, 2: 0.33, 3: 0.20, 4: 0.07}
    
