@@ -5,7 +5,7 @@ Using a small, custom written dataset (currently n=330), and with slightly modif
 ### Files (Experimental)
 ```
 text[1-5].ipynb : development/tuning
-text6.ipynb     : model case graphing utility
+text6.ipynb     : model case visualization utility
 text7.ipynb     : correction engine, test metrics, automated parameter learning
 strings.txt     : test dataset, n=330
 text8.py        : example real-time correction utility
