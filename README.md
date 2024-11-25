@@ -11,7 +11,7 @@ text6.ipynb     : model case visualization utility
 text7.ipynb     : correction engine, test metrics, automated parameter learning
 strings.txt     : test dataset, n=356
 text8.py        : example real-time correction utility
-text9.py        : correction utility with popup on correction, logging user feedback; please run this and send me your feedback.json!
+text9.py        : correction utility with feedback popup on correction, please send me your feedback.json!
 ```
 ## Development
 ### SequenceMatching Augmentation
