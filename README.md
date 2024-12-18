@@ -46,6 +46,10 @@ Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 Linear and logarithmic mappings with sim_bound=0.5\
 ![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
 *(figure 6)*
+### Correction Model Visualized
+Examples from text6.ipynb; word token probabilities shaded by similarity to target\
+![top predicted replacement words, top model correction suggestions](https://github.com/mcodepreneur/text/blob/main/figures/predictions.png)\
+*(figure 7)*
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
 * Fine tuning GPT2 and BERT once my task dataset is large enough
