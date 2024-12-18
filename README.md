@@ -50,3 +50,4 @@ Linear and logarithmic mappings with sim_bound=0.5\
 * Allow for recalculation and correcting other words based on corrected context
 * Fine tuning GPT2 and BERT once my task dataset is large enough
 * Use lemmas in reverse (consider all expanded of prediction)
+* Many more mechanisms and optimizations to make this correction system ready for real-world use 
