@@ -49,4 +49,5 @@ Examples from text6.ipynb; word token probabilities shaded by similarity to targ
 * Allow for recalculation and correcting other words based on corrected context
 * Fine tuning GPT2 and BERT once my task dataset is large enough
 * Use lemmas in reverse (consider all expanded of prediction)
+* Custom similarity or more SequenceMatching optimization
 * Many more mechanisms and optimizations to make this correction system ready for real-world use 
