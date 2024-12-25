@@ -29,13 +29,9 @@ Hyperparameter value search **(Parallel Coordinate Plot)**\
 ![accuracy hyperparameter search](https://github.com/mcodepreneur/text/blob/main/figures/accuracy_values.png)\
 *(figure 3)*
 #### Augmentation table refinement (objective=accuracy)
-Augmentation table importances\
-![augmentation table value importances](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_importance.png)\
-*(figure 4)*\
-\
 Augmentation table search **(Parallel Coordinate Plot)**\
 ![augmentation value search](https://github.com/mcodepreneur/text/blob/main/figures/adjustment_values.png)\
-*(figure 5)*\
+*(figure 4)*\
 \
 Automated fine tuning produced an optimal augmentation table (as seen in figure 5):
 * {1: 0.5, 2: 0.29, 3: 0.14, 4: 0.05}
@@ -44,11 +40,11 @@ Original proposed: {1: 0.5, 2: 0.3, 3: 0.2, 4: 0.1}
 ### Logarithmic Similarity Transformation
 Linear and logarithmic mappings with sim_bound=0.5\
 ![exponential logarithmic mappings](https://github.com/mcodepreneur/text/blob/main/figures/simmap.png)\
-*(figure 6)*
+*(figure 5)*
 ### Correction Model Visualized
 Examples from text6.ipynb; word token probabilities shaded by similarity to target\
 ![top predicted replacement words, top model correction suggestions](https://github.com/mcodepreneur/text/blob/main/figures/predictions.png)\
-*(figure 7)*
+*(figure 6)*
 ### Future Development
 * Allow for recalculation and correcting other words based on corrected context
 * Fine tuning GPT2 and BERT once my task dataset is large enough
