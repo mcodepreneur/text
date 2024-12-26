@@ -16,7 +16,7 @@ import torch
 import nltk
 nltk.download('words')
 
-topk = 2000  # number of top predicted tokens to retrieve (before excluding non-words) 
+topk = 200  # number of top predicted tokens to retrieve (before excluding non-words) 
 
 class GPT2:
     def __init__(self, model="gpt2"):
@@ -24,7 +24,7 @@ class GPT2:
         self.tokenizer = GPT2TokenizerFast.from_pretrained(model)
         self.model_id  = model
     
-    def get_word_probs(self, sentence, n=topk):  # adapted from raul on stackoverflow
+    def get_word_probs(self, sentence, n=topk):  # adapted from raun on stackoverflow
         inputs = self.tokenizer.encode(sentence, return_tensors="pt")
         with torch.no_grad():
             outputs = self.model(inputs)
@@ -50,7 +50,6 @@ class BERT:
         mask_index  = (inputs.input_ids == self.tokenizer.mask_token_id)[0].nonzero(as_tuple=True)[0]
         mask_logits = logits.squeeze()[mask_index].squeeze()
         probs = softmax(mask_logits, dim=-1)
-        topk = 5000
         topk_probs, topk_i = torch.topk(probs, topk, dim=-1)
         topk_tokens = np.array([self.tokenizer.decode([i]) for i in topk_i])
         return np.hstack((topk_tokens.reshape(-1,1), np.array(topk_probs).reshape(-1,1)))
@@ -74,8 +73,28 @@ stemmer     = PorterStemmer()
 stem        = lambda x: stemmer.stem(x)
 spell       = Speller()
 wl          = set(nltk.corpus.words.words())
-log_map     = lambda e: np.vectorize(lambda x: np.power(np.log(x/0.5)/np.log(2), e))  # specify exponent to return vectorized mapping
+log_map     = lambda e: np.vectorize(lambda x: np.power(np.log(x/sim_bound)/np.log(1/sim_bound), e)) 
 after_slash = lambda x: x[(x.rfind("/")+1 if x.rfind("/") != -1 else 0):]
+
+def get_props(target, probs):
+    probs[:, 1] = probs[:, 1].astype(float) / probs[:, 1].astype(float).sum()
+    probsp = [(str(word), float(prob), float(similar(target.lower(), word.lower()))) 
+              for word, prob in probs if word in wl]
+    close_probs = [prob for prob in probsp if prob[2] > sim_bound and prob[1] >= 0.001]
+    props = sorted([(word, (prob**prob_exp)*log_map(log_exp)(sim)) for word, prob, sim in close_probs], 
+                   reverse=True, key=lambda x: x[1])
+    return props
+
+def make_correction(target, props, probN):
+    make_correction = False
+    if len(props) > 0 and float(props[0][1]) > probN:
+        make_correction = True
+        irr_t = float(props[0][1]) * relevency_t
+        for word, score in props: 
+            if float(score) < irr_t: break
+            elif target.lower() == word.lower() or stem(target.lower()) == word.lower() or lemma(target.lower()) == word.lower():
+                make_correction = False
+    return make_correction
 
 def correction(string, back_n):
     places = reversed(range(1,back_n+1))
@@ -93,7 +112,6 @@ def correction(string, back_n):
             prompt = ' '.join(words[:-n] + [masked] + words[len(words)-(n-1):])
             target = words[-n].strip(punctuation)
             if target != spell(target):
-                target = spell(target)
                 spelled = True
         else:
             model  = M_GPT2
@@ -103,26 +121,16 @@ def correction(string, back_n):
             target = string[last_space+1:].strip(punctuation)
             target = words[-n].strip(punctuation)
             if target != spell(target):
-                target = spell(target)
                 spelled = True
-        probs = model.get_word_probs(prompt)
-        probs[:,1] = probs[:,1].astype(float)/probs[:,1].astype(float).sum()
-        probsp = [(str(word), float(prob), float(similar(target, word))) for word, prob in probs if word in wl]
-        close_probs = [prob for prob in probsp if prob[2] > 0.5 and prob[1] >= min(0.001, probsp[consider_top][1])]
-        props = [(word, (prob**prob_exp)*log_map(log_exp)(sim)) for word, prob, sim in close_probs]
-        props = sorted(props, reverse=True, key=lambda x: x[1])
-        props = [prop for prop in props if prop[1] > 0.000001]
-        probN = threshold(n)
-        make_correction = False
-        if len(props) > 0 and props[0][1] > probN:
-            make_correction = True
-            irr_t = props[0][1] * relevency_t
-            for word, score in props: 
-                if score < irr_t: break
-                elif target.lower() == word.lower() or stem(target.lower())  == word.lower() or lemma(target.lower()) == word.lower():
-                    make_correction = False
-        if make_correction: return (n, props[0][0])
-        #if spelled: return (n, target)
+        probs = model.get_word_probs(prompt) 
+        props = get_props(target, probs)
+        probN = threshold[threshold_t](n)
+        if make_correction(target, props, probN): return (n, props[0][0])
+        if spelled: 
+            target = spell(target)
+            props = get_props(target, probs)
+            if len(props) > 0 and float(props[0][1]) > probN and props[0][0] == target:
+                return (n, target)
     return False
     
 def process_correction(string, back_n):
@@ -133,13 +141,11 @@ def process_correction(string, back_n):
         n, word = is_correction
         words[-n] = word if words[-n][-1] not in punctuation else word + words[-n][-1]
         corrected = " ".join(words)
-        #is_correction = correction(corrected, back_n)
     return corrected if corrected != string else False
 
 def apply_correction(event=None):
     content = box.get("1.0", tk.END).strip("\n")
     if not content: return
-        
     last_cut = content.rfind(" ")
     for punct in ",.!?":
         i = content.rfind(punct)
@@ -153,7 +159,6 @@ def apply_correction(event=None):
     for punct in ",.!?":
         i = content.find(punct, last_cut)
         if i != -1 and i < split: split = i
-    
     text_upto = content[:split+1]
     text_new  = content[split+1:]
     def update_box():
@@ -167,23 +172,23 @@ def apply_correction(event=None):
     threading.Thread(target=update_box).start()
 
 verbose = False  # print parsed text fields on correction
-back_n  = 0  # number of words back from end of string, 1 is just last word
-k       = 1.2  # exponent parameter for exponential decay of word length augmedented SequenceMatcher
-ap      = 0.55  # exponent parameter
-bp      = 1  # exponent parameter
-log_exp      = 5  # exponent parameter for logarithmic mapping
-prob_exp     = 1  # raise probability to power in ((prob**power)*log-sim)
+back_n  = 4  # number of words back from end of string, 1 is just last word
+k       = 1.02  # exponent parameter for exponential decay of word length augmedented SequenceMatcher
+ap      = 0.68  # exponent parameter
+bp      = 0.93  # exponent parameter
+sim_bound    = 0.45
+log_exp      = 3  # exponent parameter for logarithmic mapping
+prob_exp     = 1.43  # raise probability to power in ((prob**power)*log-sim)
 consider_top = 100  # max top model word predictions considered
-relevency_t  = 0.07  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
-base_t       = 0.0015  # decision threshold for last word: base threshold
-threshold_e  = 1.8  # exponent for exponential thresholds
+relevency_t  = 0.054  # threshold defined by portion of top proposition to exclude much smaller scored propositions for correcting
+base_t       = 0.002  # decision threshold for last word: base threshold
+threshold_e  = 1.9  # exponent for exponential thresholds
 threshold_t  = "exponential"  # function defines decision threshold for word n from end
 threshold    = {"constant":    lambda n: base_t,
                 "linear":      lambda n: base_t + (base_t * (n-1)),
                 "exponential": lambda n: base_t * (n**threshold_e),
                 "jump-exp":    lambda n: base_t * (max(n-1,1)**threshold_e),        # jump thresholds start growing after n=2
-                "jump-lin":    lambda n: base_t + (base_t * max(n-2, 0))
-               }[threshold_t]
+                "jump-lin":    lambda n: base_t + (base_t * max(n-2, 0))}
 
 root = tk.Tk()
 root.title("Text")
